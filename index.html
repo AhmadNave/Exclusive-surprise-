@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Content Just For You</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-family: sans-serif;
+        }
+        /* The "Bait" Overlay */
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: none;
+        }
+        h1 { font-size: 2rem; }
+        p { color: #888; }
+    </style>
+</head>
+<body onclick="startRickroll()">
+
+    <div id="overlay">
+        <h1>⚠️ Content Warning</h1>
+        <p>Click anywhere to verify you are not a bot and view the content.</p>
+    </div>
+
+    <div id="video-container"></div>
+
+    <script>
+        function startRickroll() {
+            // Remove the overlay
+            document.getElementById('overlay').style.display = 'none';
+            
+            // Create and inject the iframe to bypass initial load blocks
+            const container = document.getElementById('video-container');
+            container.innerHTML = `
+                <iframe 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&showinfo=0&rel=0" 
+                    allow="autoplay; encrypted-media" 
+                    style="display: block; width: 100vw; height: 100vh;">
+                </iframe>
+            `;
+        }
+    </script>
+</body>
+</html>
